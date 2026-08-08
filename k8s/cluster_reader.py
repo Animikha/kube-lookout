@@ -16,7 +16,7 @@ def get_pods():
     It creates a client object that knows how to communicate with the Kubernetes API server. """
     core_api = client.CoreV1Api()
 
-    """" FCall list_pod_for_all_namespaces() through the CoreV1Api client. This method makes an 
+    """" Call list_pod_for_all_namespaces() through the CoreV1Api client. This method makes an 
     HTTP request to the Kubernetes API server asking for Pods across all namespaces. 
     Conceptually, this corresponds to a request such as: GET /api/v1/pods The Kubernetes API server 
     processes the request and returns information about the Pods. The response is assigned to the variable 'pods'.s """
