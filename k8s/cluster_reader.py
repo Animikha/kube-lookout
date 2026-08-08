@@ -9,16 +9,21 @@ def get_pods():
     destination of the cluster and means to authenticate to it """
     config.load_kube_config()
 
-    """" From the module client, call CoreV1Api(), CoreV1Api() makes http request to the 
-    kubernetes cluster's kube-apiserver and connect to its Core v1 API endpoint containing 
-    pods, services, nodes etc. Here to assign it to variable core_api """
+    """" From the client module, create a CoreV1Api object. CoreV1Api is a Python client 
+    interface for Kubernetes' Core v1 API. It provides methods for interacting with 
+    Core v1 resources such as Pods, Services, Nodes, ConfigMaps, and Secrets. 
+    Creating the CoreV1Api object itself does NOT make the request to Kubernetes yet. 
+    It creates a client object that knows how to communicate with the Kubernetes API server. """
     core_api = client.CoreV1Api()
 
-    """" From the Core V1 API endpoint, call list_pod_for_all_namespaces() to get 
-    the pods of all namespaces. Assign it the variable to pods """
+    """" FCall list_pod_for_all_namespaces() through the CoreV1Api client. This method makes an 
+    HTTP request to the Kubernetes API server asking for Pods across all namespaces. 
+    Conceptually, this corresponds to a request such as: GET /api/v1/pods The Kubernetes API server 
+    processes the request and returns information about the Pods. The response is assigned to the variable 'pods'.s """
     pods = core_api.list_pod_for_all_namespaces()
 
-    """ Return the contents of varible pods in alist format"""
+    """ Return the items contained in the Kubernetes API response. pods.items contains the collection of 
+    Pod objects returned by Kubernetes. """
     return pods.items
 
 
